@@ -1,0 +1,41 @@
+{
+    "name"        : "xmarcos/dot-container",
+    "description" : "DotContainer enables deep array access using dot-notation.",
+    "type"        : "library",
+    "license"     : "MIT",
+    "keywords"    : [
+        "dot-notation",
+        "dot",
+        "container",
+        "array"
+    ],
+    "authors" : [
+        {
+            "name"  : "Marcos Sader",
+            "email" : "xmarcos@gmail.com"
+        }
+    ],
+    "support" : {
+        "issues" : "https://github.com/xmarcos/DotContainer/issues"
+    },
+    "prefer-stable"     : true,
+    "preferred-install" : "dist",
+    "minimum-stability" : "dev",
+    "require"           : {
+        "php" : ">=5.4.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit"     : "@stable",
+        "fabpot/php-cs-fixer" : "@stable"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "xmarcos\\Dot\\" : "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "xmarcos\\Dot\\" : "tests/unit/"
+        }
+    }
+}
