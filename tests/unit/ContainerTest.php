@@ -18,7 +18,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructor()
     {
-        $dot = new Container;
+        $dot = new Container();
         $this->assertTrue($dot instanceof Container);
         $this->assertTrue($dot instanceof \ArrayAccess);
     }
