@@ -19,7 +19,6 @@
         "issues" : "https://github.com/xmarcos/DotContainer/issues"
     },
     "prefer-stable"     : true,
-    "preferred-install" : "dist",
     "minimum-stability" : "dev",
     "require"           : {
         "php" : ">=5.4.0"
