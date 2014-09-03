@@ -5,6 +5,7 @@
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
+    syntaxCheck="true"
     verbose="true"
     strict="true"
 >
@@ -19,8 +20,8 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-text" target="php://stdout" />
         <log type="testdox-text" target="php://stdout" />
+        <log type="coverage-text" target="php://stdout" />
         <log
             type="coverage-html"
             target="tests/coverage"

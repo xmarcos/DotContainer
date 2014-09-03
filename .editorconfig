@@ -6,13 +6,10 @@ end_of_line              = LF
 indent_size              = 4
 indent_style             = space
 trim_trailing_whitespace = true
-insert_final_newline     = false
+insert_final_newline     = true
 
 [*.md]
 trim_trailing_whitespace = false
-
-[*.php]
-insert_final_newline = true
 
 [*.yml]
 indent_size = 2
