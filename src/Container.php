@@ -77,11 +77,11 @@ class Container extends \ArrayObject
     {
         $keys = $this->parsePath($path);
         $tree = [];
-        $copy =& $tree;
+        $copy = & $tree;
 
         while (count($keys)) {
             $key  = array_shift($keys);
-            $copy =& $copy[$key];
+            $copy = & $copy[$key];
         }
         $copy = $value;
 
