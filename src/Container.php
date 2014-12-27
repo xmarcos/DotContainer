@@ -1,14 +1,16 @@
 <?php
-
 namespace xmarcos\Dot;
 
-class Container extends \ArrayObject
+use ArrayAccess;
+use ArrayObject;
+
+class Container extends ArrayObject
 {
     const PATH_SEPARATOR = '.';
 
     public static function create($data = null)
     {
-        if (is_array($data) || (is_object($data) && $data instanceof \ArrayAccess)) {
+        if (is_array($data) || (is_object($data) && $data instanceof ArrayAccess)) {
             return new static($data);
         }
 
