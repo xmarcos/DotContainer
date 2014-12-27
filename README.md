@@ -1,4 +1,11 @@
-# DotContainer [![Build Status](https://travis-ci.org/xmarcos/DotContainer.svg?branch=master)](https://travis-ci.org/xmarcos/DotContainer) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/xmarcos/DotContainer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/xmarcos/DotContainer/?branch=master)
+# DotContainer
+
+[![Build Status](https://img.shields.io/travis/xmarcos/DotContainer/master.svg?style=flat-square)](https://travis-ci.org/xmarcos/DotContainer) 
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/xmarcos/DotContainer/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/xmarcos/DotContainer/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/xmarcos/DotContainer.svg?style=flat-square)](https://scrutinizer-ci.com/g/xmarcos/DotContainer)
+[![Latest Version](https://img.shields.io/packagist/v/xmarcos/dot-container.svg?style=flat-square)](https://packagist.org/packages/xmarcos/dot-container)
+[![Software License](https://img.shields.io/packagist/l/xmarcos/dot-container.svg?style=flat-square)](LICENSE)
+[![Total Downloads](https://img.shields.io/packagist/dt/xmarcos/dot-container.svg?style=flat-square)](https://packagist.org/packages/xmarcos/dot-container)
 
 DotContainer enables deep array access using dot-notation.
 
