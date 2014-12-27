@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     colors="true"
+    strict="true"
+    verbose="true"
+    syntaxCheck="true"
+    stopOnFailure="false"
     bootstrap="tests/bootstrap.php"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
-    syntaxCheck="true"
-    verbose="true"
-    strict="true"
 >
     <testsuites>
         <testsuite name="unit">
@@ -22,9 +23,11 @@
     <logging>
         <log type="testdox-text" target="php://stdout" />
         <log type="coverage-text" target="php://stdout" />
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
         <log
             type="coverage-html"
-            target="tests/coverage"
+            target="build/coverage"
             charset="UTF-8"
             highlight="false"
             lowUpperBound="35"
