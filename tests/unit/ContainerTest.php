@@ -1,8 +1,11 @@
 <?php
-
 namespace xmarcos\Dot;
 
-class ContainerTest extends \PHPUnit_Framework_TestCase
+use ArrayAccess;
+use ArrayObject;
+use PHPUnit_Framework_TestCase;
+
+class ContainerTest extends PHPUnit_Framework_TestCase
 {
     private $data = null;
 
@@ -11,7 +14,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         // IssueCommentEvent.json from:
         // https://developer.github.com/v3/activity/events/types/#issuecommentevent
         $this->data = json_decode(
-            file_get_contents(__DIR__ . '/Fixtures/IssueCommentEvent.json'),
+            file_get_contents(__DIR__.'/Fixtures/IssueCommentEvent.json'),
             true
         );
     }
@@ -20,7 +23,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $dot = new Container();
         $this->assertTrue($dot instanceof Container);
-        $this->assertTrue($dot instanceof \ArrayAccess);
+        $this->assertTrue($dot instanceof ArrayAccess);
     }
 
     public function testCreate()
@@ -34,7 +37,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $dot);
 
         unset($dot);
-        $dot = Container::create(new \ArrayObject(['x', 'y', 'z']));
+        $dot = Container::create(new ArrayObject(['x', 'y', 'z']));
         $this->assertCount(3, $dot);
     }
 
@@ -194,7 +197,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($dot->has('z'));
         $this->assertFalse($dot->delete('z')->set('x.0.a', 'x0a')->has('z'));
 
-        $x0a = serialize([['a'=> 'x0a']]);
+        $x0a = serialize([['a' => 'x0a']]);
         $this->assertEquals($x0a, serialize($dot->get('x')));
     }
 }
