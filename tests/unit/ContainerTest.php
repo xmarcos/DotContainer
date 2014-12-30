@@ -14,7 +14,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         // IssueCommentEvent.json from:
         // https://developer.github.com/v3/activity/events/types/#issuecommentevent
         $this->data = json_decode(
-            file_get_contents(__DIR__.'/Fixtures/IssueCommentEvent.json'),
+            file_get_contents(__DIR__.'/../fixture/IssueCommentEvent.json'),
             true
         );
     }
