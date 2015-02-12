@@ -143,6 +143,23 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($dot->has('sender.login'));
     }
 
+    public function testOffsetUnset()
+    {
+        $dot = Container::create($this->data);
+
+        $this->assertTrue($dot->has('issue.labels.0'));
+        $this->assertArrayHasKey('color', $dot->get('issue.labels.0'));
+
+        $dot->offsetUnset('issue.labels.0.color');
+
+        $this->assertArrayNotHasKey('color', $dot->get('issue.labels.0'));
+
+        $this->assertTrue($dot->has('issue.labels.0.url'));
+        $this->assertTrue($dot->has('issue.labels.0.name'));
+        $this->assertArrayHasKey('url', $dot->get('issue.labels.0'));
+        $this->assertArrayHasKey('name', $dot->get('issue.labels.0'));
+    }
+
     public function testReset()
     {
         $dot = Container::create($this->data);
