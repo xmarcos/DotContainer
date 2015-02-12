@@ -68,11 +68,49 @@ class Container extends ArrayObject
         return $this;
     }
 
+    /**
+     * Destroys an element from the Container with the given path
+     *
+     * @param $path The path of the key to destroy
+     * @return \Container
+     */
+    public function offsetUnset($path)
+    {
+        if ($this->has($path)) {
+            $this->exchangeArray(
+                self::recursive_diff_key(
+                    $this->getArrayCopy(),
+                    $this->buildTree($path, null)
+                )
+            );
+        }
+
+        return $this;
+    }
+
     public function reset()
     {
         $this->exchangeArray([]);
 
         return $this;
+    }
+
+    private function recursive_diff_key(array $array1, array $array2)
+    {
+        $diff = array_diff_key($array1, $array2);
+        $to_check = array_intersect_key($array1, $array2);
+
+        foreach ($to_check as $k => $v) {
+            if (is_array($array1[$k]) && is_array($array2[$k])) {
+                $keep = self::recursive_diff_key($array1[$k], $array2[$k]);
+
+                if ($keep) {
+                    $diff[$k] = $keep;
+                }
+            }
+        }
+
+        return $diff;
     }
 
     private function buildTree($path, $value = null)
