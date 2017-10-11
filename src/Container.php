@@ -1,4 +1,11 @@
 <?php
+/**
+ * (c) 2017 Marcos Sader.
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace xmarcos\Dot;
 
 use ArrayAccess;
@@ -79,11 +86,11 @@ class Container extends ArrayObject
     {
         $keys = $this->parsePath($path);
         $tree = [];
-        $copy = & $tree;
+        $copy = &$tree;
 
         while (count($keys)) {
             $key  = array_shift($keys);
-            $copy = & $copy[$key];
+            $copy = &$copy[$key];
         }
         $copy = $value;
 
