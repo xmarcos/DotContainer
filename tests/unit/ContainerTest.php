@@ -3,16 +3,19 @@ namespace xmarcos\Dot;
 
 use ArrayAccess;
 use ArrayObject;
-use PHPUnit_Framework_TestCase;
-
-class ContainerTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+class ContainerTest extends TestCase
 {
     private $data = null;
 
+    /**
+     * Setup using IssueCommentEvent.json from
+     * https://developer.github.com/v3/activity/events/types/#issuecommentevent
+     *
+     * @return void
+     */
     protected function setUp()
     {
-        // IssueCommentEvent.json from:
-        // https://developer.github.com/v3/activity/events/types/#issuecommentevent
         $this->data = json_decode(
             file_get_contents(__DIR__.'/../fixture/IssueCommentEvent.json'),
             true
