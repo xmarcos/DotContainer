@@ -4,7 +4,9 @@ matrix:
     - php: 5.6
       env: USE_LOCK=false
     - php: 7
+      env: USE_LOCK=false
     - php: 7.1
+    - php: 7.2
 fast_finish: true
 cache:
   directories:
@@ -18,7 +20,8 @@ before_install:
 install:
   - >-
     if [[ "$USE_LOCK" == "false" ]];
-      then composer update;
+    then
+      composer update;
     else
       composer install;
     fi;
