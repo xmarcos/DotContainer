@@ -1,18 +1,29 @@
 language: php
-
-php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - hhvm
-
+matrix:
+  include:
+    - php: 5.4
+      env: WITH_LOWEST=true
+    - php: 5.5
+      env: WITH_LOWEST=true
+    - php: 5.6
+      env: WITH_LOWEST=true
+    - php: 7
+    - php: 7.1
+fast_finish: true
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.php_cs.cache
+before_script:
+  - phpenv config-rm xdebug.ini
+  - phpenv rehash
+before_install:
+  - composer validate
 install:
-  - composer install --dev --no-interaction --prefer-source
-
+  - >-
+    if [[ "$WITH_LOWEST" == "true" ]]; then composer update --prefer-lowest;
+    else composer install --prefer-source; fi;
 script:
-  - vendor/bin/php-cs-fixer fix -v --dry-run src/
-  - vendor/bin/phpunit -c phpunit.xml.dist
-
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+  - composer test
+notifications:
+  email: false
