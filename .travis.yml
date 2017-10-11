@@ -26,6 +26,7 @@ install:
       composer install;
     fi;
 script:
+  - composer cs
   - composer test
 notifications:
   email: false
