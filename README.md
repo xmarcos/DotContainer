@@ -10,6 +10,12 @@
 
 DotContainer enables deep array access using dot-notation.
 
+## Requirements
+
+PHP needs to be a minimum version of PHP `5.6.0`.
+
+> ⚠️ It __should__ work on PHP `5.4+` but I'm not testing it anymore on anything `<5.6`.
+
 ## Installation
 
 Using `composer require`:
@@ -27,3 +33,7 @@ or directly adding it to you `composer.json`:
     }
 }
 ```
+
+## License
+
+MIT License
