@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "**/composer.lock": true,
+        "**/build": true,
+        "**/vendor": true
+    }
+}
