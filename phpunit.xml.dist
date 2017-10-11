@@ -5,18 +5,18 @@
     verbose="true"
     syntaxCheck="true"
     stopOnFailure="false"
-    bootstrap="tests/bootstrap.php"
+    bootstrap="vendor/autoload.php"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
 >
     <testsuites>
-        <testsuite name="unit">
-            <directory>tests/unit</directory>
+        <testsuite name="xmarcos/dot-container">
+            <directory suffix=".php">tests</directory>
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+        <whitelist>
             <directory suffix=".php">src/</directory>
         </whitelist>
     </filter>
@@ -24,7 +24,6 @@
         <log type="testdox-text" target="php://stdout" />
         <log type="coverage-text" target="php://stdout" />
         <log type="coverage-clover" target="build/logs/clover.xml"/>
-        <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
         <log
             type="coverage-html"
             target="build/coverage"

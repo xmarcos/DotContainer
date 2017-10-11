@@ -1,18 +1,27 @@
 <?php
+/**
+ * (c) 2017 Marcos Sader.
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace xmarcos\Dot;
 
 use ArrayAccess;
 use ArrayObject;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ContainerTest extends PHPUnit_Framework_TestCase
+class ContainerTest extends TestCase
 {
-    private $data = null;
+    private $data;
 
+    /**
+     * Setup using IssueCommentEvent.json from
+     * https://developer.github.com/v3/activity/events/types/#issuecommentevent.
+     */
     protected function setUp()
     {
-        // IssueCommentEvent.json from:
-        // https://developer.github.com/v3/activity/events/types/#issuecommentevent
         $this->data = json_decode(
             file_get_contents(__DIR__.'/../fixture/IssueCommentEvent.json'),
             true
@@ -105,7 +114,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($dot->get('key'), 'value');
         $this->assertEquals($dot->get('nested'), ['key' => 'nested_value']);
         $this->assertEquals($dot->get('N'), [
-            'E' => [ 'S' => [ 'T' => [ 'E' => [ 'D' => range(0, 5)]]]]
+            'E' => ['S' => ['T' => ['E' => ['D' => range(0, 5)]]]],
         ]);
 
         //Extend
