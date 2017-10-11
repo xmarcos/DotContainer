@@ -12,10 +12,18 @@ DotContainer enables deep array access using dot-notation.
 
 ## Installation
 
+Using `composer require`:
+
+```bash
+composer require "xmarcos/dot-container:^0.1"
+```
+
+or directly adding it to you `composer.json`:
+
 ```json
 {
     "require": {
-        "xmarcos/dot-container": "dev-master"
+        "xmarcos/dot-container": "^0.1"
     }
 }
 ```
