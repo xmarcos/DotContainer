@@ -1,129 +1,54 @@
-filter:
-    excluded_paths: [tests/*]
 checks:
+  php:
+    code_rating: true
+    check_method_contracts:
+      verify_interface_like_constraints: true
+      verify_documented_constraints: true
+      verify_parent_constraints: true
+    duplication: true
+    more_specific_types_in_doc_comments: true
+    no_goto: true
+    no_long_variable_names:
+      maximum: '20'
+    no_short_method_names:
+      minimum: '2'
+    no_short_variable_names:
+      minimum: '2'
+    overriding_parameter: true
+    param_doc_comment_if_not_inferrable: true
+    parameter_doc_comments: true
+    return_doc_comment_if_not_inferrable: true
+    return_doc_comments: true
+    simplify_boolean_return: true
+build:
+  environment:
     php:
-        align_assignments: true
-        argument_type_checks: true
-        assignment_of_null_return: true
-        avoid_aliased_php_functions: true
-        avoid_closing_tag: true
-        avoid_conflicting_incrementers: true
-        avoid_corrupting_byteorder_marks: true
-        avoid_duplicate_types: true
-        avoid_multiple_statements_on_same_line: true
-        avoid_perl_style_comments: true
-        avoid_tab_indentation: true
-        avoid_unnecessary_concatenation: true
-        avoid_usage_of_logical_operators: true
-        avoid_useless_overridden_methods: true
-        blank_line_after_namespace_declaration: true
-        catch_class_exists: true
-        closure_use_not_conflicting: true
-        code_rating: true
-        deprecated_code_usage: true
-        encourage_postdec_operator: true
-        encourage_shallow_comparison: true
-        encourage_single_quotes: true
-        ensure_lower_case_builtin_functions: true
-        fix_doc_comments: true
-        fix_identation_4spaces: true
-        fix_line_ending: true
-        fix_linefeed: true
-        fix_php_opening_tag: true
-        fix_use_statements:
-            remove_unused: true
-            preserve_multiple: false
-            preserve_blanklines: false
-            order_alphabetically: false
-        foreach_traversable: true
-        foreach_usable_as_reference: true
-        function_body_start_on_new_line: true
-        function_in_camel_caps: true
-        instanceof_class_exists: true
-        lowercase_basic_constants: true
-        lowercase_php_keywords: true
-        method_calls_on_non_object: true
-        missing_arguments: true
-        more_specific_types_in_doc_comments: true
-        no_debug_code: true
-        no_duplicate_arguments: true
-        no_else_if_statements: true
-        no_empty_statements: true
-        no_error_suppression: true
-        no_global_keyword: true
-        no_non_implemented_abstract_methods: true
-        no_property_on_interface: true
-        no_short_open_tag: true
-        no_space_around_object_operator: true
-        no_space_before_semicolon: true
-        no_space_between_concatenation_operator: true
-        no_space_inside_cast_operator: true
-        no_trailing_whitespace: true
-        no_underscore_prefix_in_methods: true
-        no_underscore_prefix_in_properties: true
-        no_unnecessary_final_modifier: true
-        no_unnecessary_function_call_in_for_loop: true
-        no_unnecessary_if: true
-        one_class_per_file: true
-        optional_parameters_at_the_end: true
-        overriding_private_members: true
-        param_doc_comment_if_not_inferrable: true
-        parameter_doc_comments: true
-        parameter_non_unique: true
-        php5_style_constructor: true
-        phpunit_assertions: true
-        precedence_in_conditions: true
-        precedence_mistakes: true
-        psr2_class_declaration: true
-        psr2_control_structure_declaration: true
-        psr2_switch_declaration: true
-        remove_extra_empty_lines: true
-        remove_php_closing_tag: true
-        remove_trailing_whitespace: true
-        require_braces_around_control_structures: true
-        require_php_tag_first: true
-        require_scope_for_methods: true
-        require_scope_for_properties: true
-        return_doc_comment_if_not_inferrable: true
-        return_doc_comments: true
-        simplify_boolean_return: true
-        single_namespace_per_use: true
-        space_after_cast: true
-        spacing_around_conditional_operators: true
-        spacing_around_non_conditional_operators: true
-        spacing_of_function_arguments: true
-        too_many_arguments: true
-        unreachable_code: true
-        unused_methods: true
-        unused_parameters: true
-        unused_properties: true
-        unused_variables: true
-        uppercase_constants: true
-        use_self_instead_of_fqcn: true
-        use_statement_alias_conflict: true
-        useless_calls: true
-        variable_existence: true
-        verify_access_scope_valid: true
+      version: 7.1
+  tests:
+    override:
+      - command: vendor/bin/phpunit
+        coverage:
+          file: build/logs/clover.xml
+          format: clover
 tools:
-    external_code_coverage:
-        timeout: 1200
-        runs: 3
-    php_analyzer: true
-    php_code_coverage: false
-    php_code_sniffer:
-        config:
-            standard: PSR2
-        filter:
-            paths: ['src']
-    php_cpd:
-        enabled: true
-        excluded_dirs: [vendor, tests]
-    php_loc:
-        enabled: true
-        excluded_dirs: [vendor, tests]
-    php_pdepend: true
-    php_sim: true
-    php_pdepend: true
-    php_cs_fixer: true
-    php_mess_detector: true
-    sensiolabs_security_checker: true
+  php_analyzer: true
+  php_cs_fixer:
+    config:
+      level: psr2
+      fixers:
+        unused_use: true
+        phpdoc_params: true
+        php_closing_tag: true
+  php_loc: true
+  php_mess_detector: true
+  php_pdepend: true
+  php_sim: true
+  sensiolabs_security_checker: true
+filter:
+  excluded_paths:
+    - tests/*
+build_failure_conditions:
+  - elements.rating(<= D).exists
+  - elements.rating(<= C).new.count > 2
+  - issues.severity(>= MAJOR).exists
+  - 'project.metric("scrutinizer.quality", < 6)'
