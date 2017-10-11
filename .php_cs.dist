@@ -1,0 +1,25 @@
+<?php
+/**
+ * (c) 2017 Marcos Sader.
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
+$header = <<<'EOF'
+(c) 2017 Marcos Sader.
+
+For the full copyright and license information, please view
+the LICENSE file that was distributed with this source code.
+EOF;
+
+$config = new xmarcos\PhpCsFixer\Config\Php56($header);
+
+$config
+    ->setUsingCache(false)
+    ->getFinder()
+    ->in(__DIR__)
+    ->ignoreDotFiles(false)
+    ->name('.php_cs.dist');
+
+return $config;
